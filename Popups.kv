@@ -1,0 +1,56 @@
+<Pop_Begin>:
+	name: 'pop_begin'
+	title: 'Set Trumper, Shuffle, Deal First 3'
+	auto_dismiss: False
+	size_hint: None, None
+	size: app.root.children[0].ids.played_cards_layout.size
+	Button:
+		id: btn
+		text: 'Ok'
+		on_press: root.btn_press()
+
+<Pop_tell_First_Trumper>:
+	name: 'Pop_tell_First_Trumper'
+	title: 'Trumper'
+	auto_dismiss: False
+	size_hint: None, None
+	size: app.root.children[0].ids.played_cards_layout.size
+	Button:
+		id: btn
+		text: 'Ok'
+		on_press: root.btn_press()
+
+<Pop_Ronn_winner>:
+	name: 'Pop_Ronn_winner'
+	title: 'Ronn_winner'
+	auto_dismiss: False
+	size_hint: None, None
+	size: app.root.children[0].ids.played_cards_layout.size
+	pos_hint: {'x':0, 'y':0}
+	Button:
+		id: btn
+		text: 'Ok'
+		on_press: root.btn_press()
+
+<Pop_Tour_winner>:
+	name: 'Pop_Tour_winner'
+	title: 'Tour_winner'
+	auto_dismiss: False
+	size_hint: None, None
+	size: app.root.children[0].ids.played_cards_layout.size
+	pos_hint: {'x':0, 'y':0}
+	Button:
+		id: btn
+		text: 'Ok'
+		on_press: root.btn_press()
+
+<Pop_Opts>:
+	name: 'Pop_Opts'
+	title: 'Opts'
+	auto_dismiss: False
+	size_hint: None, None
+	pos_hint: {'x':0, 'y':0}
+	Button:
+		id: btn
+		text: 'Ok'
+		# on_press: root.btn_press()

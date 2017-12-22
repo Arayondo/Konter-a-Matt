@@ -1,0 +1,57 @@
+<Options>:
+	name: 'options'
+	BoxLayout:
+		orientation: 'vertical'
+		GridLayout:
+			cols: 2
+			Options_Label:
+				text: 'Your Name'
+			Options_TextInput:
+				id: PlayerName
+				text: app.Settings['Player1']
+			Options_Label:
+				text: 'Opponent 1'
+			Options_TextInput:
+				id: Player1
+				text: app.Settings['Player2']
+			Options_Label:
+				text: 'Your Mate'
+			Options_TextInput:
+				id: Player2
+				text: app.Settings['Player3']
+			Options_Label:
+				text: 'Opponent 2'
+			Options_TextInput:
+				id: Player3
+				text: app.Settings['Player4']
+			Options_Label:
+				text: 'Score'
+			Options_TextInput:
+				id: score
+				text: app.Settings['Score']
+		BoxLayout:
+			size_hint: 1, 0.25
+			Button:
+				id: save
+				text: 'Save'
+				font_size: self.height/3
+				on_release: root.save_o()
+			Button:
+				text: 'Return'
+				font_size: self.height/3
+				on_release: app.root.current = 'mainmenu'
+
+
+<Options_Label>:
+	font_size: self.height/3.5
+	italic: True
+	canvas.before:
+		Color:
+			rgba: 0,0,1,1
+		Rectangle:
+			pos: self.pos
+			size: self.size
+
+<Options_TextInput>:
+	font_size: self.height/2
+	write_tab: False

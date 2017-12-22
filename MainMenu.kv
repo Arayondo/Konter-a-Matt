@@ -1,0 +1,32 @@
+<MainMenu>:
+	name: 'mainmenu'
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			size_hint: 1, 0.6
+			canvas:
+				Color:
+					rgba: 0.1,0.8,0,0.6
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			Image:
+				source: 'Images/dogsplaying.jpg'
+		BoxLayout:
+			size_hint: 1, 0.4
+			MainMenu_Button:
+				text: 'New Game'
+				background_color: 1,0,0,0.4
+				on_release: app.root.current = 'game'
+			MainMenu_Button:
+				text: 'Options'
+				background_color: 0,1,0,0.4
+				on_release: app.root.current = 'options'
+			MainMenu_Button:
+				text: 'Exit'
+				background_color: 0,0,1,0.4
+				on_release: app.get_running_app().stop()
+
+<MainMenu_Button>:
+	font_size: self.height/5
+	bold: True

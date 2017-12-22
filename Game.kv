@@ -1,0 +1,299 @@
+<Game>:
+	name: 'game'
+	BoxLayout:		# divides left menu from actual game: 2 instances
+		BoxLayout:		# Layout of left menu
+			orientation: 'vertical'
+			height: self.parent.height
+			size_hint: 0.2, None
+			canvas:
+				Color:
+					rgba: 0.5,0.7,0.5,0.5
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			Button:
+				text: 'Return'
+				font_size: self.parent.width/6
+				on_release: app.root.current = 'mainmenu'
+				# on_release: root.reset_game()
+			Label:
+				text: 'Trump Card'
+				size_hint: None, None
+				height: self.parent.height/4
+			Image:
+				id: trump
+				source: 'Images/suit_trump.jpg'
+				size_hint: None, None
+				width: dp(self.parent.width)
+			Label:
+				id: score_them
+				font_size: self.parent.height/24
+			Label:
+				id: score_us
+				font_size: self.parent.height/24
+			Label:
+				id: info
+				font_size: self.parent.height/74
+				text: 'Info'
+				on_text: root.info_changed()
+		FloatLayout:		# Layout of Actual Game
+			size_hint: 1, 1
+			# canvas:
+			# 	Color:
+			# 		rgba: 1,0,0,1
+			# 	Rectangle:
+			# 		pos: self.pos
+			# 		size: self.size
+			Image:
+				source: 'Images/wood.jpg'
+				# size_hint: 1, 1
+				# height: dp(self.parent.height)
+				# width: dp(self.parent.width)
+				allow_stretch: True
+				keep_ratio: False
+				height: dp(self.parent.height)
+				width: dp(self.parent.width)
+				pos_hint: {'x': 0}
+			AnchorLayout:		# Position of LEFT Player
+				anchor_x: 'left'
+				anchor_y: 'top'
+				pos_hint: {"x":0.01, "y":0}
+				BoxLayout:		# Position of Left Player Cards
+					orientation: 'vertical'
+					size_hint: 0.15, 0.65
+					spacing: -66
+					canvas:
+						Color:
+							rgba: 0,1,0,1
+						Rectangle:
+							pos: self.pos
+							size: self.size
+					Side_Image:
+						id: left_player_1
+					Side_Image:
+						id: left_player_2
+					Side_Image:
+						id: left_player_3
+					Side_Image:
+						id: left_player_4
+					Side_Image:
+						id: left_player_5
+					Side_Image:
+						id: left_player_6
+					Label:
+						id: player_left
+						color: 1, 0.5, 1, 1
+						size_hint: None, None
+						height: dp(self.parent.height/7)
+						width: dp(self.parent.width)
+			AnchorLayout:		# Position of RIGHT Player
+				anchor_x: 'right'
+				anchor_y: 'top'
+				pos_hint: {"x":-0.01, "y":0}
+				BoxLayout:		# Position of Right Player Cards
+					orientation: 'vertical'
+					size_hint: 0.15, 0.65
+					spacing: -66
+					# canvas:
+					# 	Color:
+					# 		rgba: 0,1,0,1
+					# 	Rectangle:
+					# 		pos: self.pos
+					# 		size: self.size
+					Side_Image:
+						id: right_player_1
+					Side_Image:
+						id: right_player_2
+					Side_Image:
+						id: right_player_3
+					Side_Image:
+						id: right_player_4
+					Side_Image:
+						id: right_player_5
+					Side_Image:
+						id: right_player_6
+					Label:
+						id: player_right
+						color: 1, 0.5, 1, 1
+						size_hint: None, None
+						height: dp(self.parent.height/7)
+						width: dp(self.parent.width)
+			AnchorLayout:		# Position of TOP Player
+				anchor_x: 'center'
+				anchor_y: 'top'
+				pos_hint: {"x":0, "y":0}
+				BoxLayout:		# Position of TOP Player Cards
+					size_hint: 0.65, 0.2
+					# canvas:
+					# 	Color:
+					# 		rgba: 0,1,0,1
+					# 	Rectangle:
+					# 		pos: self.pos
+					# 		size: self.size
+					Top_Image:
+						id: top_player_1
+					Top_Image:
+						id: top_player_2
+					Top_Image:
+						id: top_player_3
+					Top_Image:
+						id: top_player_4
+					Top_Image:
+						id: top_player_5
+					Top_Image:
+						id: top_player_6
+					Label:
+						id: player_top
+						color: 1, 0.5, 1, 1
+						size_hint: None, None
+						height: dp(self.parent.height)
+						width: dp(self.parent.width/7)
+			AnchorLayout:		# Positiong of BOTTOM Player
+				anchor_x: 'center'
+				anchor_y: 'bottom'
+				pos_hint: {"x":0, "y":0}
+				BoxLayout:		# Position of Bottom Player Cards
+					size_hint: 0.85, 0.3
+					# canvas:
+					# 	Color:
+					# 		rgba: 0,1,0,1
+					# 	Rectangle:
+					# 		pos: self.pos
+					# 		size: self.size
+
+					ImageButton:
+						id: bottom_player_1
+						on_press: root.play_card('bottom_player_1')
+					ImageButton:
+						id: bottom_player_2
+						on_press: root.play_card('bottom_player_2')
+					ImageButton:
+						id: bottom_player_3
+						on_press: root.play_card('bottom_player_3')
+					ImageButton:
+						id: bottom_player_4
+						on_press: root.play_card('bottom_player_4')
+					ImageButton:
+						id: bottom_player_5
+						on_press: root.play_card('bottom_player_5')
+					ImageButton:
+						id: bottom_player_6
+						on_press: root.play_card('bottom_player_6')
+					Label:
+						id: player_bottom
+						color: 1, 0.5, 1, 1
+						size_hint: None, None
+						height: dp(self.parent.height)
+						width: dp(self.parent.width/7)
+			AnchorLayout:		# Position of PLAYED Cards (STACK)
+				anchor_x: 'center'
+				anchor_y: 'center'
+				pos_hint: {"x":0, "y":0.04}
+				FloatLayout:
+					id: played_cards_layout
+					size_hint: 0.6, 0.45
+					# canvas:
+					# 	Color:
+					# 		rgba: 0,0.4,0.7,1
+					# 	Rectangle:
+					# 		pos: self.pos
+					# 		size: self.size
+					AnchorLayout:		# LEFT Played Card
+						anchor_x: 'left'
+						anchor_y: 'center'
+						pos_hint: {"x":0, "y":0}
+						BoxLayout:
+							size_hint: 0.25, 0.5
+							# canvas:
+							# 	Color:
+							# 		rgba: 1,0.4,0.7,1
+							# 	Rectangle:
+							# 		pos: self.pos
+							# 		size: self.size
+							Image:
+								id: left_player_0
+								source: 'Images/card_frame.jpg'
+								size_hint: None, None
+								height: dp(self.parent.height)
+								width: dp(self.parent.width)
+					AnchorLayout:		# RIGHT Played Card
+						anchor_x: 'right'
+						anchor_y: 'center'
+						pos_hint: {"x":0, "y":0}
+						BoxLayout:
+							size_hint: 0.25, 0.5
+							# canvas:
+							# 	Color:
+							# 		rgba: 1,0.4,0.7,1
+							# 	Rectangle:
+							# 		pos: self.pos
+							# 		size: self.size
+							Image:
+								id: right_player_0
+								source: 'Images/card_frame.jpg'
+								size_hint: None, None
+								height: dp(self.parent.height)
+								width: dp(self.parent.width)
+					AnchorLayout:		# TOP Played Card
+						anchor_x: 'center'
+						anchor_y: 'top'
+						pos_hint: {"x":0, "y":0}
+						BoxLayout:
+							size_hint: 0.25, 0.4
+							# canvas:
+							# 	Color:
+							# 		rgba: 1,0.4,0.7,1
+							# 	Rectangle:
+							# 		pos: self.pos
+							# 		size: self.size
+							Image:
+								id: top_player_0
+								source: 'Images/card_frame.jpg'
+								size_hint: None, None
+								height: dp(self.parent.height)
+								width: dp(self.parent.width)
+					AnchorLayout:		# BOTTOM Played Card
+						anchor_x: 'center'
+						anchor_y: 'bottom'
+						pos_hint: {"x":0, "y":0}
+						BoxLayout:
+							size_hint: 0.25, 0.4
+							# canvas:
+							# 	Color:
+							# 		rgba: 1,0.4,0.7,1
+							# 	Rectangle:
+							# 		pos: self.pos
+							# 		size: self.size
+							Image:
+								id: bottom_player_0
+								source: 'Images/card_frame.jpg'
+								size_hint: None, None
+								height: dp(self.parent.height)
+								width: dp(self.parent.width)
+
+
+<Top_Image>:
+	source: 'Images/card_frame.jpg'
+	size_hint: None, None
+	height: dp(self.parent.height)
+	width: dp(self.parent.width/7)
+
+<ImageButton>:
+	source: 'Images/card_frame.jpg'
+	size_hint: None, None
+	height: dp(self.parent.height)
+	width: dp(self.parent.width/7)
+
+<Side_Image>:
+	source: 'Images/card_frame.jpg'
+	size_hint: None, None
+	height: dp(self.parent.height/3.5)
+	width: dp(self.parent.width)
+	canvas.before:
+		PushMatrix
+		Rotate:
+			axis: 0,0,1
+			angle: 90
+			origin: self.center
+	canvas.after:
+		PopMatrix
